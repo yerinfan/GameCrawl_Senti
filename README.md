@@ -54,7 +54,7 @@ readme_content = """
 - 게임 목록 → 각 게임 상세 리뷰 페이지 → 무한스크롤 로딩 → 리뷰 및 평점 추출
 - 약 40만 건 이상의 리뷰 확보
 
-### 🧠 모델 구성
+### 🧠 모델 구성 (한글)
 
 - 토큰화: Keras Tokenizer + Padding
 - 모델 구조:
@@ -65,6 +65,22 @@ readme_content = """
   - Dropout
   - L2 Regularization
   - 불용어 제거 및 중복/짧은 문장 제거
+
+### 🧠 모델 구성 (영어)
+
+- 토큰화: Keras `Tokenizer` + 시퀀스 `padding`
+- 모델 구조:
+  - 1D CNN: 텍스트의 n-gram 패턴을 추출하는 컨볼루션 층
+  - GlobalMaxPooling: 가장 강한 특징값 추출
+  - Dense Layer: 은닉층 (ReLU 활성화)
+  - Softmax Layer: 3-클래스 감성 분류 (`negative`, `neutral`, `positive`)
+- 정규화 및 과적합 방지:
+  - Dropout: 과적합을 방지하기 위해 은닉층에 적용
+  - 입력 전처리:
+    - 특수문자 제거
+    - 3단어 미만 리뷰 필터링
+    - OOV 토큰 처리: 훈련되지 않은 단어는 `<OOV>`로 대체
+
 
 ### ⚙️ 학습 환경
 
@@ -87,18 +103,31 @@ readme_content = """
 - CNN 모델 기준(영어):
   - Validation Accuracy: 90%
   - 학습 데이터 약 40만개 기준
-  - 
+  - 혼동행렬
+  ![image](https://github.com/user-attachments/assets/10c8c1fe-0983-49c9-adb8-db448b8bc4a2)
+  - f1-score
+  ![image](https://github.com/user-attachments/assets/cb8b9b12-f20c-4d76-be12-d74d7b94c1f6)
+
+---
+
+### 프로젝트 진행하며 
+1. metacritic 사이트는 리뷰 데이터를 js로 받아오기 때문에 selenium을 이용해야 함
+- 과거에는 beautiful soup으로 크롤링한 글을 보고 따라했다가 헤맴
+2. 50건 이상의 리뷰는 스크롤을 해야 확인 가능
+- 페이지 형식으로 url 접속시 리뷰가 뜨긴하여 같은 리뷰인 줄 모르고 3만 건을 크롤링 했었음
+
 ---
 
 ## 🚀 실행 방법
 
 ```bash
 # 가상환경 구성 권장
-conda activate nlp-tfgpu
+pip install -r requirement.txt
 # 크롬 드라이버 다운로드
 본인의 크롬 버전에 맞는 크롬 드라이버 설치
 
 # 1. 크롤링 실행
+python title_crawler.py
 python run_pc_reviews.py
 
 # 2. 모델 학습
