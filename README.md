@@ -11,12 +11,7 @@ Metacritic에서 게임 리뷰를 수집하고, 수집한 데이터를 기반으
 ```
 .
 ├── models/                  # 학습된 모델 저장
-│   ├── cnn_bilstm_model.h5
-│   ├── cnn_en_sentiment.h5
-│   └── tokenizer_final.pkl
 ├── data/                    # 크롤링/리뷰 데이터 저장
-│   ├── merged_label_final.csv # 한글 리뷰
-│   └── merged_reviews.csv   #영어 리뷰
 ├── reviews/                 # 게임 리뷰 CSV 모음
 ├── train.ipynb              # 한글 모델 학습 코드
 ├── train_en.ipynb           # 영어 모델 학습 코드
