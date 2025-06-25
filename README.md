@@ -78,9 +78,9 @@ readme_content = """
   - Validation Accuracy: 68~70%
   - 학습 데이터 약 30만개 기준
 
-  - 혼동행렬
+  - 혼동행렬   
   ![image](https://github.com/user-attachments/assets/a44278e6-4614-46aa-912d-d7ab2e20a0ec)
-  - f1-score
+  - f1-score   
   ![image](https://github.com/user-attachments/assets/a1cb4b4e-ff35-495b-a4ae-4411e70ab640)
 
 
