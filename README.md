@@ -12,6 +12,7 @@ readme_content = """
 .
 ├── models/                  # 학습된 모델 저장
 │   ├── cnn_bilstm_model.h5
+│   ├── cnn_en_sentiment.h5
 │   └── tokenizer_final.pkl
 ├── data/                    # 크롤링/리뷰 데이터 저장
 │   ├── merged_label_final.csv # 한글 리뷰
